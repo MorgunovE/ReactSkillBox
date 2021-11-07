@@ -15,15 +15,34 @@ module.exports = {
   },
   externals: [nodeExternals()],
   module: {
-    rules: [{
-      test: /\.[jt]sx?$/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
+    rules: [
+      {
+        test: /\.[jt]sx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        },
       },
-    }],
+      {
+        test: /\.less$/,
+        use:
+          [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  mode: 'local',
+                  localIdentName: '[name]__[local]--[hash:base64:5]'
+                },
+                // onlyLocals: true,
+              }
+            },
+            'less-loader',
+          ]
+      },
+    ],
   },
   optimization: {
     minimize: false,
