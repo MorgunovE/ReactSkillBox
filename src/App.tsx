@@ -4,16 +4,16 @@ import {hot} from "react-hot-loader/root";
 import {Layout} from './shared/Layout'
 import {Header} from "./shared/Header/Header";
 import {Content} from "./shared/Content";
+import {CardsList} from "./shared/CardsList";
 
 function AppComponent(){
   return (
   <Layout>
     <Header />
     <Content>
-      content
+      <CardsList />
     </Content>
   </Layout>
   )
 }
-// video 6
 export const App = hot(AppComponent)
