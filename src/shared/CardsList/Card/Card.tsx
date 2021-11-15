@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './card.less';
+import {Menu} from "./Menu";
 
 export function Card() {
   
@@ -22,15 +23,7 @@ export function Card() {
       <div className={styles.preview}>
         <img src="https://images.unsplash.com/photo-1525447153550-9b38670d8fcc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWluZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="" className={styles.previewImg}/>
       </div>
-      <div className={styles.menu}>
-        <button className={styles.menuButton}>
-          <svg width="5" height="20" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 20">
-            <circle cx="2.5" cy="2.5" r="2.5" fill="#d9d9d9" />
-            <circle cx="2.5" cy="10" r="2.5" fill="#d9d9d9" />
-            <circle cx="2.5" cy="17.5" r="2.5" fill="#d9d9d9" />
-          </svg>
-        </button>
-      </div>
+      <Menu />
       <div className={styles.controls}>
         <div className={styles.karmaCounter}>
           <button className={styles.up}>
