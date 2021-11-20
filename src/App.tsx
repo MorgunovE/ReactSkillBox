@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './main.global.less'
 import {hot} from "react-hot-loader/root";
 import {Layout} from './shared/Layout'
@@ -8,6 +8,7 @@ import {CardsList} from "./shared/CardsList";
 import {Dropdown} from "./shared/Dropdown";
 import {EColor, Text} from "./shared/Text";
 import {Break} from "./shared/Break";
+import {useToken} from "./hooks/useToken";
 // import {GenericList, MyList} from "./shared/GenericList";
 // import {GenericList} from "./shared/GenericList";
 // import {generateId, generateRandomString} from "./utils/react/generateRandomIndex";
@@ -50,10 +51,16 @@ function AppComponent(){
     // setList(list.concat(generateId({text: generateRandomString(), As:'li' as const})))
     // setList(list.concat(generateId({text: generateRandomString(), As:'a' as const})))
   // }
-  
+  // const [token, setToken] = useState('')
+  // useEffect(() =>{
+  //   if (window.__token__){
+  //     setToken(window.__token__)
+  //   }
+  // },[])
+  const [token] = useToken()
   return (
   <Layout>
-    <Header />
+    <Header token={token} />
     <Content>
       <CardsList />
       {/*<button onClick={()=> setIsVisible(!isVisible)}>Change me!</button>*/}
