@@ -13,6 +13,13 @@ app.get('/', (req,res)=>{
     indexTemplate(ReactDOM.renderToNodeStream(App()))
   )
 })
+app.get('/auth', (req,res)=>{
+  // req.query.code
+  res.send(
+    // indexTemplate(ReactDOM.renderToNodeStream(Header()))
+    indexTemplate(ReactDOM.renderToNodeStream(App()))
+  )
+})
 app.listen(3000, ()=> {
   console.log('Server started on http://localhost:3000')
 })
