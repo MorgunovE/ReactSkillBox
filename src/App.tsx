@@ -6,6 +6,8 @@ import {Header} from "./shared/Header/Header";
 import {Content} from "./shared/Content";
 import {CardsList} from "./shared/CardsList";
 import {Dropdown} from "./shared/Dropdown";
+import {EColor, Text} from "./shared/Text";
+import {Break} from "./shared/Break";
 // import {GenericList, MyList} from "./shared/GenericList";
 // import {GenericList} from "./shared/GenericList";
 // import {generateId, generateRandomString} from "./utils/react/generateRandomIndex";
@@ -64,6 +66,13 @@ function AppComponent(){
       {/*<ul>*/}
       {/*  <GenericList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
       {/*</ul>*/}
+      <br/>
+      <Text size={20} mobileSize={28} color={EColor.green} bold>label1</Text>
+      <Break size={8} mobileSize={16} top/>
+      <Text size={20}>label2</Text>
+      <Break size={8} mobileSize={16} top/>
+      <Text size={20} mobileSize={16}>label3</Text>
+      <br/>
       <div style={{padding: 20}}>
         <br/>
         <Dropdown onClose={()=> console.log('closed')} onOpen={()=> console.log('opened')} isOpen={false} button={<button>Test</button>}>
