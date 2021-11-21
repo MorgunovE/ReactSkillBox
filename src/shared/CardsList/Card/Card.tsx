@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './card.less';
 import {Menu} from "./Menu";
+import {Post} from "../../Post";
 
 export function Card() {
-  
+  const [isModalOpened, setIsModalOpened] = useState(false);
   return (
     <li className={styles.card}>
       <div className={styles.textContent}>
@@ -15,9 +16,12 @@ export function Card() {
           <span className={styles.createdAt}><span className={styles.publishedLabel}>Published</span> 4 hours ago</span>
         </div>
         <h2 className={styles.title}>
-          <a href="#post-url" className={styles.postLink}>
+          <a href="#post-url" className={styles.postLink} onClick={() =>{setIsModalOpened(true)}}>
             Need to mention, that the new model organisation the best organisation that I saw
           </a>
+          {isModalOpened && (
+            <Post onClose={()=> {setIsModalOpened(false)}}/>
+          )}
         </h2>
       </div>
       <div className={styles.preview}>

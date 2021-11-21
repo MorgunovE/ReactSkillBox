@@ -11,6 +11,7 @@ import {Break} from "./shared/Break";
 import {useToken} from "./hooks/useToken";
 import {tokenContext} from "./shared/context/tokenContext";
 import {UserContextProvider} from "./shared/context/userContext";
+import {commentContext} from "./shared/context/commentContext";
 // import {GenericList, MyList} from "./shared/GenericList";
 // import {GenericList} from "./shared/GenericList";
 // import {generateId, generateRandomString} from "./utils/react/generateRandomIndex";
@@ -61,17 +62,26 @@ function AppComponent(){
   // },[])
   const [token] = useToken()
   // const {Provider} = tokenContext
+  const [commentValue, setCommentValue] = useState('')
+  const CommentProvider = commentContext.Provider
   return (
-    <tokenContext.Provider value={token}>
-      <UserContextProvider>
-        <Layout>
-          <Header />
-          <Content>
-            <CardsList />
-          </Content>
-        </Layout>
-      </UserContextProvider>
-    </tokenContext.Provider>
+    <CommentProvider value={
+      {
+        value: commentValue,
+        onChange: setCommentValue,
+      }
+    }>
+      <tokenContext.Provider value={token}>
+        <UserContextProvider>
+          <Layout>
+            <Header />
+            <Content>
+              <CardsList />
+            </Content>
+          </Layout>
+        </UserContextProvider>
+      </tokenContext.Provider>
+    </CommentProvider>
   // <Layout>
   //   <Header token={token} />
   //   <Content>

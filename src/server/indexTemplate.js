@@ -11,6 +11,7 @@ export const indexTemplate = (content, token) => `
 </head>
 <body>
 <div id="react-root">${content}</div>
+<div id="modal_root"></div>
 </body>
 </html>
 `
