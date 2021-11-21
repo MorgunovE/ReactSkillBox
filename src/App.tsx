@@ -9,6 +9,8 @@ import {Dropdown} from "./shared/Dropdown";
 import {EColor, Text} from "./shared/Text";
 import {Break} from "./shared/Break";
 import {useToken} from "./hooks/useToken";
+import {tokenContext} from "./shared/context/tokenContext";
+import {UserContextProvider} from "./shared/context/userContext";
 // import {GenericList, MyList} from "./shared/GenericList";
 // import {GenericList} from "./shared/GenericList";
 // import {generateId, generateRandomString} from "./utils/react/generateRandomIndex";
@@ -58,36 +60,47 @@ function AppComponent(){
   //   }
   // },[])
   const [token] = useToken()
+  // const {Provider} = tokenContext
   return (
-  <Layout>
-    <Header token={token} />
-    <Content>
-      <CardsList />
-      {/*<button onClick={()=> setIsVisible(!isVisible)}>Change me!</button>*/}
-      {/*<input type="text" onChange={getValue(setTitle)}/>*/}
-      {/*{isVisible && <MyHooks title={title} id="11" />}*/}
-      {/*<MyList list={LIST} onClick={console.log}/>*/}
-      {/*<button onClick={handleAdd}>Add Element</button>*/}
-      {/*<MyList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
-      {/*<GenericList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
-      {/*<ul>*/}
-      {/*  <GenericList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
-      {/*</ul>*/}
-      <br/>
-      <Text size={20} mobileSize={28} color={EColor.green} bold>label1</Text>
-      <Break size={8} mobileSize={16} top/>
-      <Text size={20}>label2</Text>
-      <Break size={8} mobileSize={16} top/>
-      <Text size={20} mobileSize={16}>label3</Text>
-      <br/>
-      <div style={{padding: 20}}>
-        <br/>
-        <Dropdown onClose={()=> console.log('closed')} onOpen={()=> console.log('opened')} isOpen={false} button={<button>Test</button>}>
-          <CardsList />
-        </Dropdown>
-      </div>
-    </Content>
-  </Layout>
+    <tokenContext.Provider value={token}>
+      <UserContextProvider>
+        <Layout>
+          <Header />
+          <Content>
+            <CardsList />
+          </Content>
+        </Layout>
+      </UserContextProvider>
+    </tokenContext.Provider>
+  // <Layout>
+  //   <Header token={token} />
+  //   <Content>
+  //     <CardsList />
+  //     {/*<button onClick={()=> setIsVisible(!isVisible)}>Change me!</button>*/}
+  //     {/*<input type="text" onChange={getValue(setTitle)}/>*/}
+  //     {/*{isVisible && <MyHooks title={title} id="11" />}*/}
+  //     {/*<MyList list={LIST} onClick={console.log}/>*/}
+  //     {/*<button onClick={handleAdd}>Add Element</button>*/}
+  //     {/*<MyList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
+  //     {/*<GenericList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
+  //     {/*<ul>*/}
+  //     {/*  <GenericList list={list.map(merge({ onClick: handleItemClick}))}/>*/}
+  //     {/*</ul>*/}
+  //     <br/>
+  //     <Text size={20} mobileSize={28} color={EColor.green} bold>label1</Text>
+  //     <Break size={8} mobileSize={16} top/>
+  //     <Text size={20}>label2</Text>
+  //     <Break size={8} mobileSize={16} top/>
+  //     <Text size={20} mobileSize={16}>label3</Text>
+  //     <br/>
+  //     <div style={{padding: 20}}>
+  //       <br/>
+  //       <Dropdown onClose={()=> console.log('closed')} onOpen={()=> console.log('opened')} isOpen={false} button={<button>Test</button>}>
+  //         <CardsList />
+  //       </Dropdown>
+  //     </div>
+  //   </Content>
+  // </Layout>
   )
 }
 export const App = hot(()=> <AppComponent/>)
