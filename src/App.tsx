@@ -5,22 +5,25 @@ import {Layout} from './shared/Layout'
 import {Header} from "./shared/Header/Header";
 import {Content} from "./shared/Content";
 import {CardsList} from "./shared/CardsList";
-import {Dropdown} from "./shared/Dropdown";
-import {EColor, Text} from "./shared/Text";
-import {Break} from "./shared/Break";
+// import {Dropdown} from "./shared/Dropdown";
+// import {EColor, Text} from "./shared/Text";
+// import {Break} from "./shared/Break";
 import {useToken} from "./hooks/useToken";
 import {tokenContext} from "./shared/context/tokenContext";
 import {UserContextProvider} from "./shared/context/userContext";
-import {commentContext} from "./shared/context/commentContext";
+// import {commentContext} from "./shared/context/commentContext";
+// import {ActionCreator, AnyAction, createStore, Reducer} from "redux";
+import {Provider} from 'react-redux'
+import {composeWithDevTools} from "redux-devtools-extension";
+import {rootReducer} from "./store";
+import {createStore} from "redux";
 // import {GenericList, MyList} from "./shared/GenericList";
 // import {GenericList} from "./shared/GenericList";
 // import {generateId, generateRandomString} from "./utils/react/generateRandomIndex";
 // import {merge} from "./utils/js/merge";
-
 // import {getValue} from "./utils/react/pickFromSyntheticEvent";
 // import {MyHooks, useIsMounted} from "./HooksExample";
 // import {MyHooks} from "./HooksExample";
-
 // const LIST = [
   // {value:'some'},
   // {value:'other some'},
@@ -37,12 +40,13 @@ import {commentContext} from "./shared/context/commentContext";
 // ].map((item)=>({ ...item, id: generateRandomString()}))
 // ].map(generateId)
 
+const store = createStore(rootReducer, composeWithDevTools())
 function AppComponent(){
   
+  const [token] = useToken()
   // const [isVisible, setIsVisible] = React.useState(true)
   // const [title, setTitle] = React.useState('')
   // const [isVisible] = useIsMounted()
-  
   // const [list, setList] = React.useState(LIST)
   // const handleItemClick = (id: string)=>{
     // console.log(id)
@@ -60,28 +64,22 @@ function AppComponent(){
   //     setToken(window.__token__)
   //   }
   // },[])
-  const [token] = useToken()
   // const {Provider} = tokenContext
-  const [commentValue, setCommentValue] = useState('')
-  const CommentProvider = commentContext.Provider
+  // const [commentValue, setCommentValue] = useState('')
+  // const CommentProvider = commentContext.Provider
   return (
-    <CommentProvider value={
-      {
-        value: commentValue,
-        onChange: setCommentValue,
-      }
-    }>
-      <tokenContext.Provider value={token}>
-        <UserContextProvider>
-          <Layout>
-            <Header />
-            <Content>
-              <CardsList />
-            </Content>
-          </Layout>
-        </UserContextProvider>
-      </tokenContext.Provider>
-    </CommentProvider>
+    <Provider store={store}>
+        <tokenContext.Provider value={token}>
+          <UserContextProvider>
+            <Layout>
+              <Header />
+              <Content>
+                <CardsList />
+              </Content>
+            </Layout>
+          </UserContextProvider>
+        </tokenContext.Provider>
+    </Provider>
   // <Layout>
   //   <Header token={token} />
   //   <Content>
